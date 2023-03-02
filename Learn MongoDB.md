@@ -6,15 +6,11 @@
 
 
 
-
-
 ## How to Install MongoDB
 
 - সার্চ করতে হবে `MongoDb Download` লিখে।
 - Nevbar থেকে `Product` -এ Hover করে `Community Server`  টেবে যেতে হবে।
 - সেখান থেকে Downlaod করে ফেলতে হবে।
-
-
 
 
 
@@ -25,11 +21,7 @@
 
 
 
-
-
 > এখন তাদেরকে Environment Variable -এ সেট করে দিতে হবে ।
-
-
 
 
 
@@ -60,8 +52,6 @@ Build Info: {
 ```
 C:\Users\DwipSarker>mongosh
 ```
-
-
 
 
 
