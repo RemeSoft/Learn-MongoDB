@@ -1,12 +1,12 @@
 <img src="image\mongodb.jpg" style="zoom: 67%;" />
 
-<h1 style="text-align: center;">Learn MongoDB</h1>
+# Learn MongoDB
 
 এটি একটি Non Relational ডাটাবেস। এটি ডাটা সেভ করে রাখে ডকুমেন্ট আকারে। ডাটা গুলো BSON আকারে থাকে । BSON এর পুর্ন রুপ হলো Binary JSON । মূলত JSON থেকে BSON এর পার্থক্য হলো এটিতে বিভিন্ন ধরনের ডাটা টাইপ ব্যবহার করা যায়। এটি অনেক ফাস্ট। এটির জনপ্রিয়তার কারন হলো এর JSON Like Structure.
 
 
 
-#### How to Install MongoDB
+### How to Install MongoDB
 
 - সার্চ করতে হবে `MongoDb Download` লিখে।
 - Nevbar থেকে `Product` -এ Hover করে `Community Server`  টেবে যেতে হবে।
@@ -14,7 +14,7 @@
 
 
 
-#### How to Install MongoDB Shell 
+### How to Install MongoDB Shell 
 
 - সার্চ করতে হবে `MongoDb shell Download` লিখে।
 - সেখান থেকে Downlaod করে ফেলতে হবে।
@@ -25,7 +25,7 @@
 
 
 
-#### How to use MongoDB Shell
+### How to use MongoDB Shell
 
 `Command Prompt` খুলে সেখানে কিছু Comand দিয়ে বুজে নিতে হবে ঠিক মতো Install হয়েছে কিনা। Output যদি নিচের  মতো আসে তাহলে বুজতে হবে সঠিক ভাবে Install হয়েছে। 
 
@@ -55,7 +55,27 @@ C:\Users\DwipSarker>mongosh
 
 
 
+### MongoShell Command 
 
+- `db` - বর্তমানে কোন Database -এ আছি তা নির্দেশ করে।
+
+  ```
+  Command : > db
+  Output  : test
+  ```
+
+- `show dbs` Database - এর লিস্ট দেখাবে ।
+
+  ```
+  Command :test> show dbs
+  
+  Output  :admin    40.00 KiB
+   		 config  108.00 KiB
+  		 local    72.00 KiB
+  
+  ```
+
+  
 
 
 
