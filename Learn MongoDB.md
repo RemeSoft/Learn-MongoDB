@@ -6,7 +6,7 @@
 
 
 
-### How to Install MongoDB
+## How to Install MongoDB
 
 - সার্চ করতে হবে `MongoDb Download` লিখে।
 - Nevbar থেকে `Product` -এ Hover করে `Community Server`  টেবে যেতে হবে।
@@ -14,7 +14,7 @@
 
 
 
-### How to Install MongoDB Shell 
+## How to Install MongoDB Shell 
 
 - সার্চ করতে হবে `MongoDb shell Download` লিখে।
 - সেখান থেকে Downlaod করে ফেলতে হবে।
@@ -25,7 +25,7 @@
 
 
 
-### How to use MongoDB Shell
+## How to use MongoDB Shell
 
 `Command Prompt` খুলে সেখানে কিছু Comand দিয়ে বুজে নিতে হবে ঠিক মতো Install হয়েছে কিনা। Output যদি নিচের  মতো আসে তাহলে বুজতে হবে সঠিক ভাবে Install হয়েছে। 
 
@@ -55,25 +55,30 @@ C:\Users\DwipSarker>mongosh
 
 
 
-### MongoShell Command 
+## MongoShell Command 
 
 - `db` - বর্তমানে কোন Database -এ আছি তা নির্দেশ করে।
 
   ```
-  Command : > db
-  Output  : test
+  COMMAND____________
+  > db
+  
+  OUTPUT_____________
+  test
   ```
 
 - `show dbs` Database - এর লিস্ট দেখাবে ।
 
   ```
-  Command :test> show dbs
+  COMMAND____________
+  > show dbs
   
-  Output  :admin    40.00 KiB 
-  	 config  108.00 KiB
-  	 local    72.00 KiB
+  OUTPUT_____________
+  admin    40.00 KiB 
+  config  108.00 KiB
+  local    72.00 KiB
   ```
-
+  
   
 
 
