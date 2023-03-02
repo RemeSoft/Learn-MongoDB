@@ -47,6 +47,12 @@ Build Info: {
 
 
 
+## MongoDB Anatomy
+
+![](E:\Documents\Learn Mongo\image\Mongo.png)
+
+
+
 আমরা কিভাবে MongoDB Shell দিয়ে আমাদের কাজ গুলো করব তা এখন দেখবো। তবে প্রথমেই আমাদের MongoDB Server টি Start করে নিতে হবে।  তাই নিচের Command টি দিব ।
 
 ```
@@ -67,7 +73,7 @@ C:\Users\DwipSarker>mongosh
   test
   ```
 
-- `show dbs` Database - এর লিস্ট দেখাবে ।
+- `show dbs` - Database - এর লিস্ট দেখাবে ।
 
   ```
   COMMAND____________
@@ -78,14 +84,158 @@ C:\Users\DwipSarker>mongosh
   config  108.00 KiB
   local    72.00 KiB
   ```
+
+- `show collections` - কালেকশন গুলোকে দেখাবে ।
+
+  ```
+  COMMAND____________
+  >show collections
+  
+  OUTPUT_____________
+  batchOne
+  ```
+
+- `use <db-name>` - নতুন ডাটাবেস তৈরি হবে  অথবা সেখানে প্রবেশ করবে।
+
+  ```
+  COMMAND____________
+  > use students
+  
+  OUTPUT_____________
+  switched to db students
+  ```
+
+- `db.COLLECTION_NAME.insertOne()` - একটি collecton তৈরি হবে এবং সেখেনে ফিল্ড গুলো যোগ হবে।
+
+  ```
+  COMMAND____________
+  > db.batchOne.insertOne({ name : "student 1", batch: "A"})
+  
+  OUTPUT_____________
+  {
+    acknowledged: true,
+    insertedId: ObjectId("6400d965849f50a274294570")
+  }
+  ```
+
+- `db.COLLECTION_NAME.insertMany()` - একসাথে অনেকগুলো ডকুমেন্ট যোগ হবে।
+
+  ```
+  FORMATE____________
+  db.COLLECTION_NAME.insertMany([ {},{},{},.....])
+  
+  COMMAND____________
+  db.batchOne.insertMany([ 
+  	{name: "Student 2", batch: "A"}, 
+  	{name: "Student 3", batch:"B"}
+  ]);
+  
+  OUTPUT_____________
+  {
+    acknowledged: true,
+    insertedIds: {
+      '0': ObjectId("6400db90849f50a274294571"),
+      '1': ObjectId("6400db90849f50a274294572")
+    }
+  }
+  ```
+
+- `db.COLLECTION_NAME.find()` - সবগুলো ডকুমেন্টকে একসাথে দেখাবে ।
+
+- `db.COLLECTION_NAME.find().pretty()` - সবগুলো ডকুমেন্টকে  সুন্দর করে  একসাথে দেখাবে ।
+
+  ```
+  COMMAND____________
+  db.batchOne.find().pretty()
+  
+  OUTPUT_____________
+  [
+    {
+      _id: ObjectId("6400d965849f50a274294570"),
+      name: 'student 1',
+      batch: 'A'
+    },
+  	-----------------------------
+  	-----------------------------------------
+    {
+      _id: ObjectId("6400db90849f50a274294572"),
+      name: 'Student 2',
+      batch: 'B'
+    }
+  ]
+  ```
+
+- `db.COLLECTION_NAME.find({})` - কোনো একটি নির্দিষ্ট ডকুমেন্টকে আলাদা করে পেতে হলে।
+
+  ```
+  COMMAND____________
+  db.batchOne.find({name: "Student 2"})
+  
+  OUTPUT_____________
+  [
+    {
+      _id: ObjectId("6400db90849f50a274294571"),
+      name: 'Student 2',
+      batch: 'A'
+    }
+  ]
+  ```
+
+- `db.COLLECTION_NAME.find({name: "Student 2"},{name:1})` - শুধু মাএ একটি ফিল্ড Output দিবে ।
+
+  ```
+  FORMATE____________
+  db.batchOne.find(query,projection)
+  
+  COMMAND____________
+  db.batchOne.find({name: "Student 2"},{name:1})
+  
+  OUTPUT_____________
+  [ { _id: ObjectId("6400db90849f50a274294571"), name: 'Student 2' } ]
+  ```
   
   
+  
+  > তবে _ID ফিল্ড ডিফল্ড ভাবে চলে আসবে । এখানে {name:1} দিয়ে true নির্দেশ করে তাই আমরা {__id:0, name:1} দিয়ে _id ফিল্ডকে বাদ দিতে পারি ।
+  >
 
 
 
 
+- `db.COLLECTION_NAME.find({condition}).limit(number)`  - একাধিক ডকুমেন্ট থেকে প্রথম ডকুমেন্টি Output হিসেবে প্রদান করবে।
+
+  ```
+  COMMAND____________
+  students> db.batchOne.find({batch:'A'}).limit(1)
+  
+  OUTPUT_____________
+  [
+    {
+      _id: ObjectId("6400d965849f50a274294570"),
+      name: 'student 1',
+      batch: 'A'
+    }
+  ]
+  ```
+
+- `db.COLLECTION_NAME.findOne({condition})` - একাধিক ডকুমেন্ট থেকে প্রথম ডকুমেন্ট Output হিসেবে প্রদান করবে। অনেটা আগের কমান্ডের মতই ।
 
 
+- `db.COLLECTION_NAME.find({condition}).limit(number).skip(number)` - একাধিক ডকুমেন্ট থেকে ২য় ডকুমেন্ট Output হিসেবে প্রদান করবে।
 
+  ```
+  COMMAND____________
+  db.batchOne.find({batch:'A'}).limit(1).skip(1)
+  
+  OUTPUT_____________
+  [
+    {
+      _id: ObjectId("6400db90849f50a274294571"),
+      name: 'Student 2',
+      batch: 'A'
+    }
+  ]
+  ```
 
+  
 
