@@ -70,9 +70,8 @@ C:\Users\DwipSarker>mongosh
   Command :test> show dbs
   
   Output  :admin    40.00 KiB 
-  	config  108.00 KiB
-  	local    72.00 KiB
-  
+  	 config  108.00 KiB
+  	 local    72.00 KiB
   ```
 
   
