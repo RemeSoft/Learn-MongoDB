@@ -6,8 +6,6 @@
 
 
 
-[TOC]
-
 ## How to Install MongoDB
 
 - সার্চ করতে হবে `MongoDb Download` লিখে ।
@@ -51,7 +49,7 @@ Build Info: {
 
 ## MongoDB Anatomy
 
-![](E:\Documents\Learn Mongo\image\Mongo.png)
+![](image\Mongo.png)
 
 
 
