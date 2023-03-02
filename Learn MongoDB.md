@@ -2,13 +2,15 @@
 
 # Learn MongoDB
 
-এটি একটি Non Relational ডাটাবেস। এটি ডাটা সেভ করে রাখে ডকুমেন্ট আকারে। ডাটা গুলো BSON আকারে থাকে । BSON এর পুর্ন রুপ হলো Binary JSON । মূলত JSON থেকে BSON এর পার্থক্য হলো এটিতে বিভিন্ন ধরনের ডাটা টাইপ ব্যবহার করা যায়। এটি অনেক ফাস্ট। এটির জনপ্রিয়তার কারন হলো এর JSON Like Structure.
+এটি একটি Non Relational ডাটাবেজ। এটি ডাটা সেভ করে রাখে ডকুমেন্ট আকারে। ডাটা গুলো BSON আকারে থাকে । BSON এর পুর্ন রুপ হলো Binary JSON । মূলত JSON থেকে BSON এর পার্থক্য হলো এটিতে বিভিন্ন ধরনের ডাটা টাইপ ব্যবহার করা যায়। এটি অনেক ফাস্ট। এটির জনপ্রিয়তার কারন হলো এর JSON Like Structure.এর পারফরম্যান্স যে কোন RDBMS যেমনঃ MySQL থেকে অনেক অনেক বেশি ফাস্ট । এর আরেকটি বৈশিষ্ট্য হল, Horizontal Scalability … যা MySQL এ অনুপস্থিত ।MySQL এর মত RDBMS গুলো Large Scale Data নিয়ে কাজ করতে মোটেই সক্ষম নয়  ।অন্যদিকে NoSQL Databases যেমনঃ MongoDB কে ডিজাইনই করা হয়েছে Large Scale Data নিয়ে কাজ করার জন্য 
 
 
+
+[TOC]
 
 ## How to Install MongoDB
 
-- সার্চ করতে হবে `MongoDb Download` লিখে।
+- সার্চ করতে হবে `MongoDb Download` লিখে ।
 - Nevbar থেকে `Product` -এ Hover করে `Community Server`  টেবে যেতে হবে।
 - সেখান থেকে Downlaod করে ফেলতে হবে।
 
@@ -181,7 +183,7 @@ C:\Users\DwipSarker>mongosh
   ]
   ```
 
-- `db.COLLECTION_NAME.find({name: "Student 2"},{name:1})` - শুধু মাএ একটি ফিল্ড Output দিবে ।
+- `db.COLLECTION_NAME.find({<filter>},{name:1})` - শুধু মাএ একটি ফিল্ড Output দিবে ।
 
   ```
   FORMATE____________
@@ -202,7 +204,7 @@ C:\Users\DwipSarker>mongosh
 
 
 
-- `db.COLLECTION_NAME.find({condition}).limit(number)`  - একাধিক ডকুমেন্ট থেকে প্রথম ডকুমেন্টি Output হিসেবে প্রদান করবে।
+- `db.COLLECTION_NAME.find({<filter>}).limit(number)`  - একাধিক ডকুমেন্ট থেকে প্রথম ডকুমেন্টি Output হিসেবে প্রদান করবে।
 
   ```
   COMMAND____________
@@ -218,10 +220,10 @@ C:\Users\DwipSarker>mongosh
   ]
   ```
 
-- `db.COLLECTION_NAME.findOne({condition})` - একাধিক ডকুমেন্ট থেকে প্রথম ডকুমেন্ট Output হিসেবে প্রদান করবে। অনেটা আগের কমান্ডের মতই ।
+- `db.COLLECTION_NAME.findOne({<filter>})` - একাধিক ডকুমেন্ট থেকে প্রথম ডকুমেন্ট Output হিসেবে প্রদান করবে। অনেটা আগের কমান্ডের মতই ।
 
 
-- `db.COLLECTION_NAME.find({condition}).limit(number).skip(number)` - একাধিক ডকুমেন্ট থেকে ২য় ডকুমেন্ট Output হিসেবে প্রদান করবে।
+- `db.COLLECTION_NAME.find({<filter>}).limit(number).skip(number)` - একাধিক ডকুমেন্ট থেকে ২য় ডকুমেন্ট Output হিসেবে প্রদান করবে।
 
   ```
   COMMAND____________
@@ -237,5 +239,47 @@ C:\Users\DwipSarker>mongosh
   ]
   ```
 
+- `db.COLLECTION_NAME.updateOne({<filter>},{$set:{<update>}})` - কোনো একটি ফিল্ডের Value Update করবে ।
+
+  ```
+  COMMAND____________
+  db.batchOne.updateOne({name:'Student 3'},{$set:{batch: 'A'}});
   
+  OUTPUT_____________
+  {
+    acknowledged: true,
+    insertedId: null,
+    matchedCount: 1,
+    modifiedCount: 1,
+    upsertedCount: 0
+  }
+  ```
+
+- `db.COLLECTION_NAME.updateMany({<filter>}, {$set:{<update>}})` - একসাথে একাধিক ডকুমেন্টের ফিল্ড Update করবে । 
+
+  ```
+  COMMAND____________
+  db.batchOne.updateMany({batch: 'A'}, {$set:{batch: "B"}})
+  
+  OUTPUT_____________
+  {
+    acknowledged: true,
+    insertedId: null,
+    matchedCount: 3,
+    modifiedCount: 3,
+    upsertedCount: 0
+  }
+  ```
+
+- `db.batchOne.deleteMany({<filter>})` - ফিল্টারকৃত ডকুমেন্টকে ডিলিট করে দিবে ।
+
+  ```
+  COMMAND____________
+  db.batchOne.deleteMany({batch: 'C'});
+  
+  OUTPUT_____________
+  { acknowledged: true, deletedCount: 1 }
+  ```
+
+  > আমরা যদি সবগুলো ডকুমেন্ট একসাথে ডিলিট করতে চাই তাহলে আমদের  আর ফিল্টার ব্যবহার করতে হবে না। শুধু  db.batchOne.deleteMany({}) কমান্ডটি দিলেই হবে । 
 
